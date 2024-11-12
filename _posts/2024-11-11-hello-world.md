@@ -16,7 +16,7 @@ Welcome, explorers of code! 🌍 No programming journey is complete without the 
 
 Ah, C! The backbone of many systems. Here’s how C says "Hello, World!"
 
-```c
+```c 
 #include <stdio.h>
 
 int main() {

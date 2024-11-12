@@ -23,11 +23,13 @@ int main() {
     printf("Hello, World!\n");
     return 0;
 }
+```
 
-C#
+## C#
 
 C# makes it look easy with a few lines, using its .NET framework.
 
+```c#
 using System;
 
 class Program {
@@ -35,17 +37,21 @@ class Program {
         Console.WriteLine("Hello, World!");
     }
 }
+```
 
-Ruby
+## Ruby
 
 Ruby keeps it simple and sweet. This line is as minimal as it gets!
 
+```ruby
 puts "Hello, World!"
+```
 
-Go
+## Go
 
 Go is strong and opinionated, yet concise. Here’s “Hello, World!” in Go:
 
+```go
 package main
 
 import "fmt"
@@ -53,26 +59,33 @@ import "fmt"
 func main() {
     fmt.Println("Hello, World!")
 }
+```
 
-Node.js
+## Node.js
 
 JavaScript running on a server? Absolutely! Here’s how you do it with Node.js:
 
+```javascript
 console.log("Hello, World!");
+```
 
-Python
+## Python
 
 Python’s syntax is famously beginner-friendly. Here’s its take:
 
+```python
 print("Hello, World!")
+```
 
-Rust
+## Rust
 
 Rust is both powerful and safe. It keeps you on your toes but welcomes you warmly:
 
+```rust
 fn main() {
     println!("Hello, World!");
 }
+```
 
 And there you have it! Seven languages, seven greetings, one universal message: “Hello, World!” Whatever language you choose, each first program reminds us of the wonder and creativity in programming. So, which one is your favorite “Hello, World!”?
 

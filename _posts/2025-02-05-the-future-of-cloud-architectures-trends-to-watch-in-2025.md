@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "The Future of Cloud Architectures: Trends to Watch in 2025"
-date: 2025-02-05
+title: The Future of Cloud Architectures Trends to Watch in 2025
+date: 2025-02-05 17:50 -0600
 author: Willian Leite
 categories: [Cloud, Architecture, Trends]
 tags: [Cloud, AI, 2025, Trends]

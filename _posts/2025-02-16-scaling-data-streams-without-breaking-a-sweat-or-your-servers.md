@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scaling Data Streams Without Breaking a Sweat (or Your Servers)"
-date: 2025-02-05
+date: 2025-02-16 20:00 -0600
 categories: [Data Streaming, Real-Time Analytics]
 tags: [Data Streaming, Kafka, Flink, Cloud, Scalability]
 excerpt: "Discover the key principles and best practices for building scalable data streams that power real-time analytics, all without causing your servers to panic."
@@ -41,7 +41,7 @@ A solid real-time data pipeline isn’t built in a day, but when it is, it looks
 	•	Where the magic begins. Sources: IoT devices, logs, APIs, databases.
 	•	Tools: Kafka, Kinesis.
 	2.	Processing Layer
-	•	The brain of your operation.
+	•	The brain of your operation.gimt
 	•	Real-time transformations: filtering, aggregation, and windowing.
 	3.	Storage & Querying Layer
 	•	The vault where your precious data lives. Databases: Druid, ClickHouse, Rockset.

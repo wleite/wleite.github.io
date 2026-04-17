@@ -3,6 +3,10 @@
 - type: github
   icon: "fab fa-github"
 
+- type: medium
+  icon: "fab fa-medium"
+  url: "https://medium.com/@willianleite"
+
 # - type: twitter
 #   icon: "fa-brands fa-x-twitter"
 

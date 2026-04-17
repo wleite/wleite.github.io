@@ -1,27 +1,25 @@
-<!-- Language Switcher — sidebar pill -->
-
-{% assign _is_default = false %}
-{% if site.active_lang == site.default_lang %}
-  {% assign _is_default = true %}
-{% endif %}
+<!-- Language Switcher — sidebar pill (JS-driven to bypass polyglot URL rewriting) -->
 
 <div class="lang-toggle d-inline-flex align-items-center" role="navigation" aria-label="Language switcher">
-  <a
-    href="{{ '/' | relative_url }}"
-    class="lang-btn{% if _is_default %} active{% endif %}"
-    aria-label="Switch to English"
-    {% unless _is_default %}aria-current="false"{% endunless %}
-  >
+  <button type="button" class="lang-btn" id="lang-btn-en" onclick="window.location.href='/'" aria-label="Switch to English">
     <span class="lang-flag" aria-hidden="true">🇺🇸</span>
     <span class="lang-code">EN</span>
-  </a>
-  <a
-    href="{{ '/pt-BR/' | relative_url }}"
-    class="lang-btn{% unless _is_default %} active{% endunless %}"
-    aria-label="Mudar para Português"
-    {% unless _is_default %}aria-current="true"{% endunless %}
-  >
+  </button>
+  <button type="button" class="lang-btn" id="lang-btn-pt" onclick="window.location.href='/pt-BR/'" aria-label="Mudar para Português">
     <span class="lang-flag" aria-hidden="true">🇧🇷</span>
     <span class="lang-code">PT</span>
-  </a>
+  </button>
 </div>
+
+<script>
+  (function () {
+    var isPt = window.location.pathname.startsWith('/pt-BR');
+    var enBtn = document.getElementById('lang-btn-en');
+    var ptBtn = document.getElementById('lang-btn-pt');
+    if (isPt) {
+      ptBtn.classList.add('active');
+    } else {
+      enBtn.classList.add('active');
+    }
+  })();
+</script>

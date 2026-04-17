@@ -18,8 +18,11 @@
   gap: 4px;
   padding: 3px 9px;
   border-radius: 16px;
+  border: none;
+  background: transparent;
   color: var(--sidebar-btn-color);
   text-decoration: none;
+  cursor: pointer;
   transition: background 0.2s ease, color 0.15s ease;
 
   .lang-flag {

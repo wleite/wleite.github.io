@@ -12,11 +12,17 @@ if ('serviceWorker' in navigator) {
     const btnRefresh = notification.querySelector('.toast-body>button');
     const popupWindow = Toast.getOrCreateInstance(notification);
 
-    navigator.serviceWorker.register(swUrl).then((registration) => {
-      // Restore the update window that was last manually closed by the user
-      if (registration.waiting) {
+    const DISMISSED_SW_KEY = 'dismissedSW';
+
+    function showUpdatePopup(registration) {
+      const dismissedUrl = localStorage.getItem(DISMISSED_SW_KEY);
+      if (registration.waiting && registration.waiting.scriptURL !== dismissedUrl) {
         popupWindow.show();
       }
+    }
+
+    navigator.serviceWorker.register(swUrl).then((registration) => {
+      showUpdatePopup(registration);
 
       registration.addEventListener('updatefound', () => {
         registration.installing.addEventListener('statechange', () => {
@@ -33,6 +39,12 @@ if ('serviceWorker' in navigator) {
           registration.waiting.postMessage('SKIP_WAITING');
         }
         popupWindow.hide();
+      });
+
+      notification.addEventListener('hidden.bs.toast', () => {
+        if (registration.waiting) {
+          localStorage.setItem(DISMISSED_SW_KEY, registration.waiting.scriptURL);
+        }
       });
     });
 

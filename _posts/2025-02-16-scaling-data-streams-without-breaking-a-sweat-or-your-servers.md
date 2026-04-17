@@ -5,6 +5,7 @@ date: 2025-02-16 20:00 -0600
 categories: [Data Streaming, Real-Time Analytics]
 tags: [Data Streaming, Kafka, Flink, Cloud, Scalability]
 excerpt: "Discover the key principles and best practices for building scalable data streams that power real-time analytics, all without causing your servers to panic."
+ref: scaling-data-streams
 ---
 
 # Introduction

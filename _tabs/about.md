@@ -44,26 +44,6 @@ In the realm of IT governance, I have implemented robust processes to ensure com
 
 ---
 
-## Education
-
-**Universidade Anhembi Morumbi** — Systems Analysis and Development *(2013–2016)*
-
-**Faculdade de Tecnologia de São Paulo** — B.Tech., Information Technology *(1998–2001)*
-
-**Liceu Santista** — High School, Data Processing *(1994–1997)*
-
----
-
-## Certifications
-
-- Watson Discovery Foundations
-- Microsoft Certified Professional — Developing and Implementing Web Applications with Visual C# .NET
-- Microsoft Certified Professional — .NET Framework Application Development Foundation
-- IBM Sales Certified Professional — Lotus Solution Sales Mastery v2
-- AI, Business & the Future of Work
-
----
-
 ## Contact
 
 - **LinkedIn:** [linkedin.com/in/wleite](https://www.linkedin.com/in/willianleite)

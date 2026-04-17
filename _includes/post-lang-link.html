@@ -2,14 +2,13 @@
 
 {% if page.ref %}
   {% assign _default = site.default_lang %}
-  {% assign _active  = site.active_lang %}
 
-  {% if _active == _default %}
-    {% assign _translated = site.posts | where: 'ref', page.ref | where_exp: 'p', 'p.lang != nil' | first %}
-    {% assign _label = 'Ler em Português 🇧🇷' %}
-  {% else %}
+  {% if page.lang and page.lang != _default %}
     {% assign _translated = site.posts | where: 'ref', page.ref | where_exp: 'p', 'p.lang == nil or p.lang == _default' | first %}
     {% assign _label = 'Read in English 🇺🇸' %}
+  {% else %}
+    {% assign _translated = site.posts | where: 'ref', page.ref | where_exp: 'p', 'p.lang != nil and p.lang != _default' | first %}
+    {% assign _label = 'Ler em Português 🇧🇷' %}
   {% endif %}
 
   {% if _translated %}

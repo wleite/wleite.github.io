@@ -1,0 +1,21 @@
+<!-- Translation link for posts with a `ref` front-matter key -->
+
+{% if page.ref %}
+  {% assign _default = site.default_lang %}
+  {% assign _active  = site.active_lang %}
+
+  {% if _active == _default %}
+    {% assign _translated = site.posts | where: 'ref', page.ref | where_exp: 'p', 'p.lang != nil' | first %}
+    {% assign _label = 'Ler em Português 🇧🇷' %}
+  {% else %}
+    {% assign _translated = site.posts | where: 'ref', page.ref | where_exp: 'p', 'p.lang == nil or p.lang == _default' | first %}
+    {% assign _label = 'Read in English 🇺🇸' %}
+  {% endif %}
+
+  {% if _translated %}
+    <a href="{{ _translated.url | relative_url }}" class="post-lang-link" aria-label="{{ _label }}">
+      <i class="fas fa-language fa-fw"></i>
+      <span>{{ _label }}</span>
+    </a>
+  {% endif %}
+{% endif %}

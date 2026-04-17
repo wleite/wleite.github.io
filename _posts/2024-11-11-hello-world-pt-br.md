@@ -5,6 +5,7 @@ date: 2024-11-11 19:11 -0600
 categories: [programming, beginner, fun]
 tags: [hello-world, programming-languages, C, C#, Ruby, Go, Node, Python, Rust]
 lang: pt-BR
+ref: hello-world
 ---
 
 # Olá, Mundo! Em 7 Linguagens

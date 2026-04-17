@@ -4,6 +4,7 @@ title: Hello, World! Across 7 Languages
 date: 2024-11-11 19:11 -0600
 categories: [programming, beginner, fun]
 tags: [hello-world, programming-languages, C, C#, Ruby, Go, Node, Python, Rust]
+ref: hello-world
 ---
 
 # Hello, World! Across 7 Languages

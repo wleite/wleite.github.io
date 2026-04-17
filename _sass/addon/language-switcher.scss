@@ -1,0 +1,75 @@
+/*
+ * Language switcher — sidebar pill + post translation link
+ */
+
+/* ── Sidebar pill ─────────────────────────────────────────────── */
+
+.lang-toggle {
+  gap: 2px;
+  padding: 3px;
+  background: var(--sidebar-btn-bg);
+  border: 1px solid var(--btn-border-color);
+  border-radius: 20px;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 16px;
+  color: var(--sidebar-btn-color);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.15s ease;
+
+  .lang-flag {
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+
+  .lang-code {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  &:hover:not(.active) {
+    background: var(--sidebar-hover-bg);
+    color: var(--sidebar-active-color);
+    text-decoration: none;
+  }
+
+  &.active {
+    background: var(--sidebar-active-color);
+    color: var(--sidebar-bg);
+    pointer-events: none;
+  }
+}
+
+/* ── Post translation link ────────────────────────────────────── */
+
+.post-lang-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: $radius-sm;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--btn-border-color);
+  color: var(--link-color);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.15s ease;
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background: var(--tag-hover);
+    text-decoration: none;
+    color: var(--link-color);
+  }
+}

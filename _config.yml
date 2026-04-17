@@ -8,6 +8,12 @@ theme: jekyll-theme-chirpy
 # otherwise, the layout language will use the default value of 'en'.
 lang: en
 
+# jekyll-polyglot settings
+languages: ["en", "pt-BR"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css", "assets/js", "assets/img", "assets/css"]
+parallel_localization: true
+
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
 timezone: America/Chicago
 

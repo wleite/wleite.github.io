@@ -4,17 +4,19 @@ title: "Multiple Event Types on a Single Kafka Topic — The Right Way"
 date: 2026-05-04 09:00 -0600
 categories: [Data Streaming, Apache Kafka]
 tags: [Kafka, Confluent, Schema Registry, JSON Schema, Python, Event Streaming]
-excerpt: "Tired of creating one topic per event type? Learn how to use TopicRecordNameStrategy and JSON Schema to safely publish multiple event types on a single Kafka topic in Confluent Cloud."
+excerpt: "One topic per schema is the governance ideal — but the real world doesn't always cooperate. Learn how to use TopicRecordNameStrategy and JSON Schema to keep full schema governance even when multiple event types share a single Kafka topic."
 ref: multi-schema-topic-kafka
 ---
 
 # Introduction
 
-One of the most debated design questions in Kafka is: **should each event type get its own topic, or can multiple event types share one?**
+If you're thinking about how to design topics in Kafka, the answer from a governance perspective is clear: **one topic per event type**. Each topic carries a single schema, has a clear owner, and evolves on its own contract. As your platform matures, this is the path toward **Data Products** — well-defined, independently owned event streams that other teams can discover and consume with confidence. That's the direction you should be heading.
 
-The instinct is to go one topic per type — it's simple, predictable, and keeps consumers from having to deal with different schemas. But in the real world, that approach can quickly spiral into a topic explosion. Imagine an `orders` domain where you have `OrderStatus`, `OrderPayment`, and `OrderShipment` events — each closely related, often consumed together, but living on three separate topics just to keep schemas clean.
+But the real world doesn't always let you start there. Legacy systems, domain boundaries, team constraints, or a migration in progress can leave you in a situation where multiple event types end up on the same topic. And when that happens, the wrong answer is to give up on governance entirely and hope consumers figure it out at runtime.
 
-There's a better way. In this post, I'll walk through how I built a demo that shows exactly how to do this properly using **Confluent Cloud**, **JSON Schema**, and the **TopicRecordNameStrategy**.
+In this post, I'll walk through a demo I built that shows exactly how to handle that situation — using **Confluent Cloud**, **JSON Schema**, and the **TopicRecordNameStrategy** to keep full schema enforcement even when multiple event types share a single topic.
+
+👉 [**Check out the full demo on GitHub →**](https://github.com/wleite/Demo-Multi-Schema-Topic)
 
 👉 [**Check out the full demo on GitHub →**](https://github.com/wleite/Demo-Multi-Schema-Topic)
 
@@ -24,7 +26,7 @@ Without a strategy, mixing event types in a single Kafka topic is a recipe for c
 
 This is exactly where **Confluent's Schema Registry** and subject naming strategies shine. The key piece here is the **TopicRecordNameStrategy**, which registers each event type under its own subject instead of sharing a single subject for the whole topic:
 
-```
+```text
 Subject = <topic>-<record_name>-value
 ```
 
@@ -52,7 +54,7 @@ A Python **producer** serializes all three types and publishes them to the same 
 
 The flow is cleaner than you might expect:
 
-```
+```text
 Producer (Python)
   ├── OrderStatus    → registers schema → orders-multi-schema-OrderStatus-value
   ├── OrderPayment   → registers schema → orders-multi-schema-OrderPayment-value

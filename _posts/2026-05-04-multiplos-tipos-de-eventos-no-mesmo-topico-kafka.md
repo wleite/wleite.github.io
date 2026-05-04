@@ -4,18 +4,20 @@ title: "Múltiplos Tipos de Eventos no Mesmo Tópico Kafka — Do Jeito Certo"
 date: 2026-05-04 09:00 -0600
 categories: [Data Streaming, Apache Kafka]
 tags: [Kafka, Confluent, Schema Registry, JSON Schema, Python, Event Streaming]
-excerpt: "Cansado de criar um tópico por tipo de evento? Aprenda como usar o TopicRecordNameStrategy com JSON Schema para publicar múltiplos tipos de evento em um único tópico Kafka no Confluent Cloud."
+excerpt: "Um tópico por schema é o ideal de governança — mas o mundo real nem sempre coopera. Aprenda como usar o TopicRecordNameStrategy com JSON Schema para manter governança completa mesmo quando múltiplos tipos de eventos compartilham um único tópico Kafka."
 lang: pt-BR
 ref: multi-schema-topic-kafka
 ---
 
 # Introdução
 
-Uma das questões de design mais debatidas no Kafka é: **cada tipo de evento deve ter seu próprio tópico, ou múltiplos tipos podem compartilhar um único tópico?**
+Se você está pensando em como estruturar tópicos no Kafka, a resposta do ponto de vista de governança é clara: **um tópico por tipo de evento**. Cada tópico carrega um único schema, tem um responsável definido e evolui com seu próprio contrato. À medida que sua plataforma amadurece, esse é o caminho em direção aos **Data Products** — streams de eventos bem definidos, com ownership claro, que outras equipes podem descobrir e consumir com confiança. É para lá que você deveria estar indo.
 
-O instinto é seguir com um tópico por tipo — é simples, previsível e evita que os consumers precisem lidar com schemas diferentes. Mas na prática, essa abordagem pode rapidamente virar uma explosão de tópicos. Imagine um domínio de `orders` com eventos de `OrderStatus`, `OrderPayment` e `OrderShipment` — todos relacionados, frequentemente consumidos juntos, mas vivendo em três tópicos separados só para manter os schemas limpos.
+Mas o mundo real nem sempre permite começar por aí. Sistemas legados, fronteiras de domínio, restrições de equipe ou uma migração em andamento podem te deixar numa situação onde múltiplos tipos de eventos acabam no mesmo tópico. E quando isso acontece, a resposta errada é abrir mão da governança e torcer para que os consumers resolvam tudo em tempo de execução.
 
-Existe um jeito melhor. Neste post, vou mostrar como construí um demo que demonstra exatamente como fazer isso de forma correta usando **Confluent Cloud**, **JSON Schema** e o **TopicRecordNameStrategy**.
+Neste post, vou mostrar um demo que construí para demonstrar exatamente como lidar com essa situação — usando **Confluent Cloud**, **JSON Schema** e o **TopicRecordNameStrategy** para manter a validação completa de schema mesmo quando múltiplos tipos de eventos compartilham um único tópico.
+
+👉 [**Veja o demo completo no GitHub →**](https://github.com/wleite/Demo-Multi-Schema-Topic)
 
 👉 [**Veja o demo completo no GitHub →**](https://github.com/wleite/Demo-Multi-Schema-Topic)
 
@@ -25,7 +27,7 @@ Sem uma estratégia, misturar tipos de eventos em um único tópico Kafka é uma
 
 É exatamente aqui que o **Schema Registry da Confluent** e as estratégias de nomenclatura de subjects brilham. A peça-chave é o **TopicRecordNameStrategy**, que registra cada tipo de evento sob seu próprio subject, em vez de compartilhar um único subject para o tópico inteiro:
 
-```
+```text
 Subject = <tópico>-<nome_do_registro>-value
 ```
 
@@ -53,7 +55,7 @@ Um **producer** em Python serializa os três tipos e os publica no mesmo tópico
 
 O fluxo é mais limpo do que você pode imaginar:
 
-```
+```text
 Producer (Python)
   ├── OrderStatus    → registra schema → orders-multi-schema-OrderStatus-value
   ├── OrderPayment   → registra schema → orders-multi-schema-OrderPayment-value
